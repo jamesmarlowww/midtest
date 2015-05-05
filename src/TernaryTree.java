@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
+import static java.lang.Math.max;
+
 //Question 3: Ternary Tree
 //This class implements a ternary tree using a linked-based implementation
 //Each node contains references to its left, center and right children
@@ -15,6 +17,7 @@ public class TernaryTree<E>{
 	//Create an empty node (i.e. sentinel)
 	public TernaryTree(){
 		val=null;
+        parent = null;
 		left=right=center=this;
 	}
 
@@ -22,7 +25,10 @@ public class TernaryTree<E>{
 	public TernaryTree(E value){
     //// Write your code below
         val = value;
-
+        right = center = left = new TernaryTree<>();
+        setLeft(left);
+        setCenter(center);
+        setRight(right);
 
     //// Write your code above
 	}
@@ -31,9 +37,19 @@ public class TernaryTree<E>{
 	public TernaryTree(E value, TernaryTree<E> left, TernaryTree<E> center, TernaryTree<E> right){
     //// Write your code below
         val = value;
-        this.left = left;
-        this.center = center;
-        this.right = right;
+        if (left == null) {
+            left = new TernaryTree<>();
+        }
+        setLeft(left);
+        if (right == null) {
+            right = new TernaryTree<>();
+        }
+        setRight(right);
+
+        if(center == null) {
+            center = new TernaryTree<>();
+        }
+        setCenter(center);
     //// Write your code above
 	}
 
@@ -93,11 +109,12 @@ public class TernaryTree<E>{
     //Return the height of the ternary tree
 	public int height(){
     //// Write your code below
-        if(parent == null) {
+        if(val == null) {
             return 0;
         } else {
-            int max = Math.max(left().height(), center.height());
-            return 1+Math.max(max,right.height());
+            int max = Math.max(left.height(), center.height());
+//            return 1+Math.max(max,right.height());
+            return max(max, right.height()) + 1;
         }
     //// Write your code above
 	}
@@ -146,12 +163,13 @@ public class TernaryTree<E>{
     //// Write your code below
         ArrayList<TernaryTree<E>> returnList = new ArrayList<TernaryTree<E>>();
 
-        if(parent == null) {
+        if(this == null) {
+            System.out.println("problem hereeeee");
             return returnList;
         }
 
         Stack<TernaryTree> stack = new Stack<TernaryTree>();
-        stack.push(parent);
+        stack.push(this);
 
         while(!stack.empty()){
             TernaryTree n = stack.pop();
@@ -167,6 +185,7 @@ public class TernaryTree<E>{
                 stack.push(n.left);
             }
         }
+
         return returnList;
     //// Write your code above
     }
@@ -197,14 +216,19 @@ public class TernaryTree<E>{
         g.setCenter(k);
         g.setRight(m);
 
-        System.out.println("The tree rooted at a is "+a);
-//
-//        System.out.println("The Leaves in this tree are ");
-//        ArrayList<TernaryTree<String>> leaves = a.leaves();
-//        for(TernaryTree<String> t: leaves){
-//            System.out.println("\t"+t.value()+" at level "+t.level());
-//        }
+
+
+       System.out.println("The tree rooted at a is "+a);
+
+        System.out.println("The Leaves in this tree are ");
+        ArrayList<TernaryTree<String>> leaves = a.leaves();
+        for(TernaryTree<String> t: leaves){
+            System.out.println("\t"+t.value()+" at level "+t.level());
+        }
         System.out.println("The height of the tree is "+a.height());
+
+        System.out.println(leaves.toString());
+
     }
 
 }
