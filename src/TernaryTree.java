@@ -193,13 +193,13 @@ public class TernaryTree<E> {
 
 
         if (left.val != null) {
-            left.leaves();
+            list.addAll(left.leaves());
         }
         if (center.val != null) {
-            center.leaves();
+            list.addAll(center.leaves());
         }
         if (right.val != null) {
-            right.leaves();
+            list.addAll(right.leaves());
         }
         if (left.val == null && right.val == null && center.val == null) {
             list.add(this);
@@ -248,10 +248,6 @@ public class TernaryTree<E> {
             System.out.println("\t" + t.value() + " at level " + t.level());
         }
         System.out.println("The height of the tree is " + a.height());
-
-
-        System.out.println(a.leaves().size());
-
 
 
     }
