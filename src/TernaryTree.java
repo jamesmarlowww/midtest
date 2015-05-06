@@ -13,6 +13,7 @@ public class TernaryTree<E> {
     protected E val;
     protected TernaryTree<E> parent;
     protected TernaryTree<E> left, center, right;
+    protected ArrayList<TernaryTree<E>> leaveList = new ArrayList<>();
 
     //Create an empty node (i.e. sentinel)
     public TernaryTree() {
@@ -140,10 +141,36 @@ public class TernaryTree<E> {
 	*/
     public String toString() {
         //// Write your code below
+        String s = "";
+        if (val != null) {
 
-        return leaves().toString();
+//            System.out.print("("+val+")");
+            s= "("+val+":"+"("+ right.toString()+")("+center.toString()+")("+ left.toString()+")";
+
+        }
+
+        return s;
 
         //// Write your code above
+    }
+
+
+    public String preorderTraverseTree() {
+        String s = "";
+        if (val != null) {
+
+            System.out.println("" + val);
+
+            right.preorderTraverseTree();
+            center.preorderTraverseTree();
+            left.preorderTraverseTree();
+
+        }
+
+        return s;
+
+
+
     }
 
 
@@ -161,8 +188,9 @@ public class TernaryTree<E> {
     // Return an ArrayList storing the values of all leaves in the tree
     public ArrayList<TernaryTree<E>> leaves() {
         //// Write your code below
-        // ArrayList<TernaryTree<E>> returnList = new ArrayList<TernaryTree<E>>();
         ArrayList<TernaryTree<E>> list = new ArrayList<>();
+
+
 
         if (left.val != null) {
             left.leaves();
@@ -174,14 +202,16 @@ public class TernaryTree<E> {
             right.leaves();
         }
         if (left.val == null && right.val == null && center.val == null) {
-            list.add(new TernaryTree<E>(val));
-
+            list.add(this);
         }
 
         return list;
         //// Write your code above
     }
 
+    public ArrayList<TernaryTree<E>> getLeaveList() {
+        return leaveList;
+    }
 
     public static void main(String[] args) {
         TernaryTree<String> a = new TernaryTree<String>("a");
@@ -210,8 +240,7 @@ public class TernaryTree<E> {
         g.setRight(m);
 
 
-
-        System.out.println("The tree rooted at a is " + a);
+        System.out.println("The tree rooted at a is " +a.toString());
 
         System.out.println("The Leaves in this tree are ");
         ArrayList<TernaryTree<String>> leaves = a.leaves();
@@ -221,7 +250,13 @@ public class TernaryTree<E> {
         System.out.println("The height of the tree is " + a.height());
 
 
+        System.out.println(a.leaves().size());
+
+
+
     }
+
+
 
 
 }

@@ -35,27 +35,25 @@ public class ListSet<E> implements Iterable<E>{
     //YOu must use the Tuple class that implements an ordered tuple
     public ListSet<Tuple<E>> product(ListSet<E> s){
         ////Write your code below
-        ListSet<Tuple<E>> ls = new ListSet<Tuple<E>>();
+        ListSet<Tuple<E>> resultLists = new ListSet<Tuple<E>>();
 
-//        if (s.size() == 0) {
-//            Tuple<E>  = new <Tuple<E>>();
-//            ls.add(
+//        List<List<String>> result = new ArrayList<List<String>>();
+//        resultLists.add(new <Tuple<E>>());
 //
-//            return ls;
-//        } else {
-//            List<T> firstList = lists.get(0);
-//            List<List<T>> remainingLists = cartesianProduct(lists.subList(1, lists.size()));
-//            for (T condition : firstList) {
-//                for (List<T> remainingList : remainingLists) {
-//                    ArrayList<T> resultList = new ArrayList<T>();
-//                    resultList.add(condition);
-//                    resultList.addAll(remainingList);
-//                    resultLists.add(resultList);
+//        for (List<String> e : lists) {
+//            List<List<String>> tmp1 = new ArrayList<List<String>>();
+//            for (List<String> x : result) {
+//                for (String y : e) {
+//                    List<String> tmp2 = new ArrayList<String>(x);
+//                    tmp2.add(y);
+//                    tmp1.add(tmp2);
 //                }
 //            }
+//            result = tmp1;
 //        }
 
-        return ls;
+        return resultLists;
+
         ////Write your code above
     }
 
@@ -96,7 +94,7 @@ public class ListSet<E> implements Iterable<E>{
             pointer = pointer.next();
         }
         return "{"+s+"}";
-        ////Write your code above
+        //Write your code above
     }
 
     //This method returns the union of this and s
