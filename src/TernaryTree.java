@@ -7,6 +7,8 @@ import static java.lang.Math.max;
 //This class implements a ternary tree using a linked-based implementation
 //Each node contains references to its left, center and right children
 //as well as a reference to its parent
+//james marlow
+//1249807
 
 public class TernaryTree<E> {
 
@@ -240,7 +242,7 @@ public class TernaryTree<E> {
         g.setRight(m);
 
 
-        System.out.println("The tree rooted at a is " +a.toString());
+        System.out.println("The tree rooted at a is " +a);
 
         System.out.println("The Leaves in this tree are ");
         ArrayList<TernaryTree<String>> leaves = a.leaves();

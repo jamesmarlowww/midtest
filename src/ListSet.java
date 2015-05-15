@@ -1,6 +1,9 @@
 import java.util.*;
 
 /* Question 2: Implement a Set abstract data type using singly linked lists
+james marlow
+1249807
+
 */
 public class ListSet<E> implements Iterable<E>{
     private SinglyLinkedList<E> sl;
@@ -37,24 +40,40 @@ public class ListSet<E> implements Iterable<E>{
         ////Write your code below
         ListSet<Tuple<E>> resultLists = new ListSet<Tuple<E>>();
 
-//        List<List<String>> result = new ArrayList<List<String>>();
-//        resultLists.add(new <Tuple<E>>());
-//
-//        for (List<String> e : lists) {
-//            List<List<String>> tmp1 = new ArrayList<List<String>>();
-//            for (List<String> x : result) {
-//                for (String y : e) {
-//                    List<String> tmp2 = new ArrayList<String>(x);
-//                    tmp2.add(y);
-//                    tmp1.add(tmp2);
-//                }
-//            }
-//            result = tmp1;
-//        }
+        int num = 0;
+        for(E xNum : s) {
+            Tuple<E> tuple = new Tuple<E>(2);
+            int x = 0;
+            for(E xStr: this) {
+                tuple = new Tuple<E>(2);
+                E[] newArray = (E[]) new Object[2];
+                newArray[x] = xStr;
+                x++;
+                newArray[x] = xNum;
+                tuple.set(newArray);
+                resultLists.add(tuple);
+                x = 0;
+            }
+
+
+        }
 
         return resultLists;
-
         ////Write your code above
+////////old
+//        for(E xNum : s) {
+//            Tuple<E> tuple = new Tuple<E>(size());
+//            num++;
+//            E[] newArray = (E[]) new Object[this.size()];
+//            int x = 0;
+//            for(E xStr: this) {
+//                newArray[x] = xStr;
+//                x++;
+//            }
+//            tuple.set(newArray);
+//            resultLists.add(tuple);
+//        }
+
     }
 
 
@@ -211,7 +230,9 @@ public class ListSet<E> implements Iterable<E>{
         l2.clear();
         l2.add("0");
         l2.add("1");
-       // System.out.println(l1.product(l2));
+
+
+        System.out.println(l1.product(l2));
     }
 
 }
